@@ -4,7 +4,7 @@ const Accounts: React.FC = () => {
   return (
     <div className="flex h-screen w-full">
       <div className="flex-1/3 bg-gray-100 p-6 overflow-y-auto ">
-        <h2 className="text-4xl font-bold mb-4 text-center rounded-xl p-2 bg-white rounded-">
+        <h2 className="text-4xl font-semibold mb-4 text-center rounded-xl p-2 bg-white rounded-">
           Accounts
         </h2>
         <div className="bg-white p-4 rounded-xl shadow-sm mb-4 cursor-pointer hover:shadow-lg transition">
@@ -31,7 +31,7 @@ const Accounts: React.FC = () => {
       </div>
 
       <div className="flex-2/3 bg-gray-50 p-6">
-        <h2 className="text-4xl font-semibold mb-4">checking Account</h2>
+        <h2 className="text-4xl font-semibold mb-4 text-center">Checking Account</h2>
 
         <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
           <div>
@@ -99,7 +99,7 @@ const Accounts: React.FC = () => {
           <tr className="border-b"></tr>
         </tbody>
       </table>
-      <button className="bg-gray-200 px-4 py-2 rounded-lg mt-4">Download Statement</button>
+      <button className="bg-gray-200 px-4 py-2 rounded-lg mt-4 cursor-pointer hover:opacity-90">Download Statement</button>
         </div>
         
       </div>

@@ -11,7 +11,7 @@ function App() {
           <SideBar />
         </div>
         <div className="flex-grow flex flex-col">
-          <main className="flex-1">
+          <main>
             <Header />
             <Routes>
               <Route path="/accounts" element={<Accounts />} />

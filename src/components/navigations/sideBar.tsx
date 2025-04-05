@@ -26,7 +26,7 @@ const SideBar: React.FC = () => {
           </button>
           <Link
             to="/accounts"
-            className=" text-left py-2 px-2 hover:bg-orange-400  cursor-pointer "
+            className=" text-left py-2 px-2 hover:bg-orange-400  cursor-pointer focus:bg-orange-500 "
           >
             <span>
               <FontAwesomeIcon icon={faUser} className="mr-2" />
