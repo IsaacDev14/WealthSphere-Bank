@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
-  faChartPie,
   faArrowTrendUp,
   faArrowTrendDown,
   faDollarSign,
@@ -13,6 +12,17 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Define a type for your stock data to ensure type safety
+interface Stock {
+  symbol: string;
+  name: string;
+  price: number;
+  change: number;
+  changePercent: number;
+  shares: number;
+  value: number;
+}
+
 const Investments = () => {
   const primaryColor = "#991b1b";
   const lightText = "#64748b";
@@ -21,7 +31,8 @@ const Investments = () => {
 
   const [timeRange, setTimeRange] = useState("ytd");
   const [activeTab, setActiveTab] = useState("portfolio");
-  const [selectedStock, setSelectedStock] = useState(null);
+  // Correct the type of selectedStock to allow for a Stock object or null
+  const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
 
   // Mock investment data
   const portfolio = {
@@ -36,11 +47,11 @@ const Investments = () => {
       { category: "Real Estate", value: 142839, percentage: 16, change: 7.8 },
       { category: "Commodities", value: 71419, percentage: 8, change: 2.4 },
       { category: "Cryptocurrency", value: 44649, percentage: 5, change: -3.7 },
-    ]
+    ],
   };
 
   // Mock stock data
-  const stocks = [
+  const stocks: Stock[] = [
     { symbol: "AAPL", name: "Apple Inc.", price: 175.43, change: 2.35, changePercent: 1.36, shares: 25, value: 4385.75 },
     { symbol: "MSFT", name: "Microsoft Corp.", price: 337.69, change: -1.24, changePercent: -0.37, shares: 15, value: 5065.35 },
     { symbol: "GOOGL", name: "Alphabet Inc.", price: 138.21, change: 3.67, changePercent: 2.73, shares: 20, value: 2764.20 },
@@ -50,7 +61,8 @@ const Investments = () => {
   ];
 
   // Format currency
-  const formatCurrency = (amount) => {
+  // Explicitly type the 'amount' parameter as 'number'
+  const formatCurrency = (amount: number): string => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -58,7 +70,8 @@ const Investments = () => {
   };
 
   // Format percentage
-  const formatPercent = (value) => {
+  // Explicitly type the 'value' parameter as 'number'
+  const formatPercent = (value: number): string => {
     return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`;
   };
 
@@ -166,8 +179,7 @@ const Investments = () => {
                     </div>
                     <input
                       type="text"
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:outline-none"
-                      style={{ focusBorderColor: primaryColor }}
+                      className={`block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:outline-none focus:ring-[${primaryColor}]`}
                       placeholder="Search investments..."
                     />
                   </div>
@@ -175,8 +187,7 @@ const Investments = () => {
                 
                 <div className="flex items-center space-x-2">
                   <select 
-                    className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:outline-none"
-                    style={{ focusBorderColor: primaryColor }}
+                    className={`text-sm border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:outline-none focus:ring-[${primaryColor}]`}
                     value={timeRange}
                     onChange={(e) => setTimeRange(e.target.value)}
                   >

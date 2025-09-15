@@ -6,22 +6,22 @@ import {
   faFileAlt,
   faArrowTrendUp,
   faArrowTrendDown,
-  faWallet,
+
   faHandHoldingUsd,
-  faPercent,
+
   faPlus,
-  faCreditCard,
+
 } from "@fortawesome/free-solid-svg-icons";
 
 const Accounts: React.FC = () => {
   // Color scheme matching the Dashboard
   const primaryColor = "#991b1b"; // Rich red
-  const primaryLight = "#fca5a5"; // Lighter red
-  const primaryDark = "#7f1d1d"; // Darker red
+ 
+
   const secondaryColor = "#1e40af"; // Complementary blue
-  const accentColor = "#d97706"; // Amber accent
+
   const successColor = "#059669"; // Green for positive values
-  const warningColor = "#d97706"; // Amber for warnings
+
   const darkText = "#1e293b";
   const lightText = "#64748b";
   const cardBg = "#ffffff";

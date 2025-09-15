@@ -56,7 +56,6 @@ function App() {
         <div className="flex flex-col flex-1 overflow-hidden">
           <Header 
             onMenuToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-            isSidebarCollapsed={sidebarCollapsed}
           />
           
           <main className="flex-1 overflow-y-auto bg-gray-100">

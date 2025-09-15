@@ -21,15 +21,16 @@ interface SideBarProps {
   onToggle?: () => void;
 }
 
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 interface MenuItem {
   path?: string;
-  icon: any;
+  icon: IconDefinition;
   label: string;
 }
 
 const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
   const location = useLocation();
-  const primaryColor = "#991b1b"; 
   const separatorColor = "rgba(255, 255, 255, 0.2)";
 
   const toggleSidebar = () => {

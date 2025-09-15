@@ -2,18 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
-  faChartPie,
-  faChartBar,
   faCreditCard,
   faExchangeAlt,
   faPiggyBank,
-  faUniversity,
+
   faArrowTrendUp,
   faArrowTrendDown,
-  faShieldAlt,
-  faQuestionCircle,
-  faWallet,
-  faHandHoldingUsd,
   faPercent,
   faFilter,
   faMoneyBillWave,
@@ -22,15 +16,12 @@ import {
 const Dashboard: React.FC = () => {
   // Color scheme with dominant red
   const primaryColor = "#991b1b"; // Rich red (bg-red-800)
-  const primaryLight = "#fca5a5"; // Lighter red
-  const primaryDark = "#7f1d1d"; // Darker red
+
   const secondaryColor = "#1e40af"; // Complementary blue
   const accentColor = "#d97706"; // Amber accent
-  const successColor = "#059669"; // Green for positive values
-  const warningColor = "#d97706"; // Amber for warnings
   const darkText = "#1e293b";
   const lightText = "#64748b";
-  const cardBg = "#ffffff";
+
   const dashboardBg = "#fef2f2"; // Very light red background
 
   // State for interactive elements
@@ -46,13 +37,13 @@ const Dashboard: React.FC = () => {
   };
 
   // Mock data with KSh values and updated datatypes
-  const spendingData = [
-    { category: "Shopping", amount: 12500, percentage: 35, color: primaryColor },
-    { category: "Food & Dining", amount: 8600, percentage: 24, color: "#ea580c" },
-    { category: "Transport", amount: 6200, percentage: 17, color: secondaryColor },
-    { category: "Entertainment", amount: 4800, percentage: 13, color: "#16a34a" },
-    { category: "Utilities", amount: 3900, percentage: 11, color: "#ca8a04" },
-  ];
+  // const spendingData = [
+  //   { category: "Shopping", amount: 12500, percentage: 35, color: primaryColor },
+  //   { category: "Food & Dining", amount: 8600, percentage: 24, color: "#ea580c" },
+  //   { category: "Transport", amount: 6200, percentage: 17, color: secondaryColor },
+  //   { category: "Entertainment", amount: 4800, percentage: 13, color: "#16a34a" },
+  //   { category: "Utilities", amount: 3900, percentage: 11, color: "#ca8a04" },
+  // ];
 
   const accounts = [
     { name: "Premium Checking", number: "•••• 4856", balance: 324569.00, trend: "up" },
@@ -167,8 +158,7 @@ const Dashboard: React.FC = () => {
           </div>
           <div className="flex items-center space-x-2">
             <select
-              className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:outline-none"
-              style={{ focusBorderColor: primaryColor }}
+              className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:outline-none focus:ring-2 focus:ring-red-800"
               value={timeRange}
               onChange={(e) => setTimeRange(e.target.value)}
             >

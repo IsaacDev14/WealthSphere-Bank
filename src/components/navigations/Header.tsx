@@ -4,7 +4,7 @@ import { faBars, faBell, faEnvelope, faMoon, faSun, faSearch, faCog, faGem } fro
 
 interface HeaderProps {
   onMenuToggle: () => void;
-  isSidebarCollapsed: boolean;
+  // isSidebarCollapsed was removed because it's not used in this component
 }
 
 interface Notification {
@@ -13,7 +13,7 @@ interface Notification {
   time: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMenuToggle, isSidebarCollapsed }) => {
+const Header: React.FC<HeaderProps> = ({ onMenuToggle }) => {
   const [darkMode, setDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
