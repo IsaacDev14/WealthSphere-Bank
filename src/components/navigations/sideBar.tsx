@@ -29,8 +29,8 @@ interface MenuItem {
 
 const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
   const location = useLocation();
-  const primaryColor = "#991b1b";
-  const primaryDark = "#7f1d1d";
+  const primaryColor = "#991b1b"; 
+  const separatorColor = "rgba(255, 255, 255, 0.2)";
 
   const toggleSidebar = () => {
     if (onToggle) onToggle();
@@ -60,23 +60,23 @@ const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
   };
 
   return (
-    <div className={`h-screen text-white flex flex-col transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-56'} shadow-xl`} style={{ backgroundColor: primaryDark }}>
-      <div className="flex items-center justify-between p-3 border-b" style={{ borderColor: `${primaryColor}70` }}>
+    <div className={`h-screen text-white flex flex-col transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-56'} shadow-xl bg-red-800`}>
+      <div className="flex items-center justify-between p-3 border-b" style={{ borderColor: separatorColor }}>
         {!isCollapsed ? (
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 overflow-hidden rounded-full bg-white flex items-center justify-center">
-              <span className="font-bold text-sm" style={{ color: primaryColor }}>WS</span>
+              <span className="font-bold text-sm text-red-800">WS</span>
             </div>
             <span className="text-lg font-semibold">WealthSphere</span>
           </div>
         ) : (
           <div className="flex justify-center w-full">
             <div className="h-8 w-8 overflow-hidden rounded-full bg-white flex items-center justify-center">
-              <span className="font-bold text-sm" style={{ color: primaryColor }}>WS</span>
+              <span className="font-bold text-sm text-red-800">WS</span>
             </div>
           </div>
         )}
-        <button onClick={toggleSidebar} className="p-1.5 rounded-full hover:bg-red-800 transition-colors" aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
+        <button onClick={toggleSidebar} className="p-1.5 rounded-full hover:bg-red-700 transition-colors" aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
           <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} className="text-sm" />
         </button>
       </div>
@@ -85,12 +85,12 @@ const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
         <nav className="space-y-1">
           {menuItems.map((item, index) => (
             item.path ? (
-              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-800'}`}>
+              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-700'}`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
                 {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
               </Link>
             ) : (
-              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800`}>
+              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-700`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
                 {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
               </button>
@@ -98,17 +98,17 @@ const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
           ))}
         </nav>
 
-        <hr className={`my-4 ${isCollapsed ? 'mx-2' : 'mx-3'}`} style={{ borderColor: `${primaryColor}70` }} />
+        <hr className={`my-4 ${isCollapsed ? 'mx-2' : 'mx-3'}`} style={{ borderColor: separatorColor }} />
 
         <nav className="space-y-1">
           {secondaryItems.map((item, index) => (
             item.path ? (
-              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-800'}`}>
+              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-700'}`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
                 {!isCollapsed && <span className="font-normal text-sm">{item.label}</span>}
               </Link>
             ) : (
-              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800`}>
+              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-700`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
                 {!isCollapsed && <span className="font-normal text-sm">{item.label}</span>}
               </button>
@@ -117,22 +117,22 @@ const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
         </nav>
       </section>
 
-      <div className="mt-auto border-t" style={{ borderColor: `${primaryColor}70` }}>
+      <div className="mt-auto border-t" style={{ borderColor: separatorColor }}>
         {!isCollapsed ? (
           <div className="p-3">
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+              <div className="h-8 w-8 rounded-full flex items-center justify-center bg-red-800">
                 <span className="font-semibold text-xs text-white">U</span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-medium truncate text-sm">User Name</p>
-                <p className="text-xs truncate" style={{ color: '#fca5a5' }}>user@example.com</p>
+                <p className="text-xs truncate text-red-200">user@example.com</p>
               </div>
             </div>
           </div>
         ) : (
           <div className="p-3 flex justify-center">
-            <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+            <div className="h-8 w-8 rounded-full flex items-center justify-center bg-red-800">
               <span className="font-semibold text-xs text-white">U</span>
             </div>
           </div>
@@ -141,12 +141,12 @@ const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
         <nav className="pb-3">
           {footerItems.map((item, index) => (
             item.path ? (
-              <Link key={index} to={item.path} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800 text-xs ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : ''}`}>
+              <Link key={index} to={item.path} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-700 text-xs ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : ''}`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-sm mx-auto' : 'mr-2 text-xs'} />
                 {!isCollapsed && <span>{item.label}</span>}
               </Link>
             ) : (
-              <button key={index} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800 text-xs`}>
+              <button key={index} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-700 text-xs`}>
                 <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-sm mx-auto' : 'mr-2 text-xs'} />
                 {!isCollapsed && <span>{item.label}</span>}
               </button>
