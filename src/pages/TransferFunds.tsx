@@ -142,7 +142,6 @@ const TransferFunds = () => {
 
   // Tab button styles
   const tabButtonStyles = "flex flex-col items-center justify-center gap-1 px-3 py-3 rounded-lg transition-colors text-xs md:text-sm";
-  const activeTabStyles = "text-white";
 
   // Render the appropriate form based on selected tab
   const renderForm = () => {
@@ -679,57 +678,57 @@ const TransferFunds = () => {
             </h2>
 
             {/* Tab Navigation */}
-            <div className="flex flex-wrap gap-2 md:gap-4 mb-6" style={{ color: primaryColor }}>
-              <button
-                onClick={() => setSelectedTab("own")}
-                className={`${tabButtonStyles} ${selectedTab === "own" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'} `}
-              >
-                <FontAwesomeIcon icon={faArrowRightArrowLeft} className="text-lg" />
-                <span className={`${selectedTab === "own" ? activeTabStyles : 'text-gray-600'}`}>To My Own Accounts</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("other")}
-                className={`${tabButtonStyles} ${selectedTab === "other" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faBuildingColumns} className="text-lg" />
-                <span className={`${selectedTab === "other" ? activeTabStyles : 'text-gray-600'}`}>To Other Banks</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("mobile")}
-                className={`${tabButtonStyles} ${selectedTab === "mobile" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faMobileScreen} className="text-lg" />
-                <span className={`${selectedTab === "mobile" ? activeTabStyles : 'text-gray-600'}`}>To Mobile Money</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("bills")}
-                className={`${tabButtonStyles} ${selectedTab === "bills" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faMoneyBill1} className="text-lg" />
-                <span className={`${selectedTab === "bills" ? activeTabStyles : 'text-gray-600'}`}>Pay Bills</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("loan")}
-                className={`${tabButtonStyles} ${selectedTab === "loan" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faHandHoldingDollar} className="text-lg" />
-                <span className={`${selectedTab === "loan" ? activeTabStyles : 'text-gray-600'}`}>Repay Loan</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("goals")}
-                className={`${tabButtonStyles} ${selectedTab === "goals" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faPiggyBank} className="text-lg" />
-                <span className={`${selectedTab === "goals" ? activeTabStyles : 'text-gray-600'}`}>Fund Savings Goal</span>
-              </button>
-              <button
-                onClick={() => setSelectedTab("schedule")}
-                className={`${tabButtonStyles} ${selectedTab === "schedule" ? 'bg-red-800' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <FontAwesomeIcon icon={faClock} className="text-lg" />
-                <span className={`${selectedTab === "schedule" ? activeTabStyles : 'text-gray-600'}`}>Schedule Transfer</span>
-              </button>
-            </div>
+<div className="flex flex-wrap gap-2 md:gap-4 mb-6" style={{ color: primaryColor }}>
+  <button
+    onClick={() => setSelectedTab("own")}
+    className={`${tabButtonStyles} ${selectedTab === "own" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'} `}
+  >
+    <FontAwesomeIcon icon={faArrowRightArrowLeft} className="text-lg" />
+    <span>To My Own Accounts</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("other")}
+    className={`${tabButtonStyles} ${selectedTab === "other" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faBuildingColumns} className="text-lg" />
+    <span>To Other Banks</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("mobile")}
+    className={`${tabButtonStyles} ${selectedTab === "mobile" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faMobileScreen} className="text-lg" />
+    <span>To Mobile Money</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("bills")}
+    className={`${tabButtonStyles} ${selectedTab === "bills" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faMoneyBill1} className="text-lg" />
+    <span>Pay Bills</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("loan")}
+    className={`${tabButtonStyles} ${selectedTab === "loan" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faHandHoldingDollar} className="text-lg" />
+    <span>Repay Loan</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("goals")}
+    className={`${tabButtonStyles} ${selectedTab === "goals" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faPiggyBank} className="text-lg" />
+    <span>Fund Savings Goal</span>
+  </button>
+  <button
+    onClick={() => setSelectedTab("schedule")}
+    className={`${tabButtonStyles} ${selectedTab === "schedule" ? 'bg-red-800 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}
+  >
+    <FontAwesomeIcon icon={faClock} className="text-lg" />
+    <span>Schedule Transfer</span>
+  </button>
+</div>
 
             {/* Transfer Form */}
             <form onSubmit={handleSubmit}>
