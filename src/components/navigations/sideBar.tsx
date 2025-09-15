@@ -1,76 +1,160 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHome, faComments ,
-  faUser, faPiggyBank,
+  faHome,
+  faComments,
+  faUser,
+  faPiggyBank,
   faExchangeAlt,
   faListAlt,
   faMoneyBill1Wave,
+  faChevronLeft,
+  faChevronRight,
+  faSignOutAlt,
+  faCog,
+  faQuestionCircle
 } from "@fortawesome/free-solid-svg-icons";
 
-const SideBar: React.FC = () => {
+interface SideBarProps {
+  isCollapsed?: boolean;
+  onToggle?: () => void;
+}
+
+interface MenuItem {
+  path?: string;
+  icon: any;
+  label: string;
+}
+
+const SideBar: React.FC<SideBarProps> = ({ isCollapsed = false, onToggle }) => {
+  const location = useLocation();
+  const primaryColor = "#991b1b";
+  const primaryDark = "#7f1d1d";
+
+  const toggleSidebar = () => {
+    if (onToggle) onToggle();
+  };
+
+  const menuItems: MenuItem[] = [
+    { path: "/", icon: faHome, label: "Dashboard" },
+    { path: "/accounts", icon: faUser, label: "Accounts" },
+    { path: "/transferfunds", icon: faExchangeAlt, label: "Transfer Funds" },
+    { path: "/transactions", icon: faListAlt, label: "Transactions" },
+    { path: "/investments", icon: faMoneyBill1Wave, label: "Investments" },
+  ];
+
+  const secondaryItems: MenuItem[] = [
+    { path: "/suggestions", icon: faComments, label: "Suggestions" },
+    { path: "/goals", icon: faPiggyBank, label: "My Goals Tracker" },
+  ];
+
+  const footerItems: MenuItem[] = [
+    { path: "/settings", icon: faCog, label: "Settings" },
+    { path: "/help", icon: faQuestionCircle, label: "Help & Support" },
+    { path: "/logout", icon: faSignOutAlt, label: "Sign Out" },
+  ];
+
+  const isActiveLink = (path: string) => {
+    return location.pathname === path;
+  };
+
   return (
-    <main className="top-0 left-0 fixed h-screen bg-indigo-950 pt-2 text-white flex flex-col transition-all duration-300 items-center w-60">
-      <div className="h-24 w-24 overflow-hidden rounded-full mb-6 ">
-        <img className="h-full w-full " src="src/assets/logo2.jpg" alt="logo" />
+    <div className={`h-screen text-white flex flex-col transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-56'} shadow-xl`} style={{ backgroundColor: primaryDark }}>
+      <div className="flex items-center justify-between p-3 border-b" style={{ borderColor: `${primaryColor}70` }}>
+        {!isCollapsed ? (
+          <div className="flex items-center space-x-2">
+            <div className="h-8 w-8 overflow-hidden rounded-full bg-white flex items-center justify-center">
+              <span className="font-bold text-sm" style={{ color: primaryColor }}>WS</span>
+            </div>
+            <span className="text-lg font-semibold">WealthSphere</span>
+          </div>
+        ) : (
+          <div className="flex justify-center w-full">
+            <div className="h-8 w-8 overflow-hidden rounded-full bg-white flex items-center justify-center">
+              <span className="font-bold text-sm" style={{ color: primaryColor }}>WS</span>
+            </div>
+          </div>
+        )}
+        <button onClick={toggleSidebar} className="p-1.5 rounded-full hover:bg-red-800 transition-colors" aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
+          <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronLeft} className="text-sm" />
+        </button>
       </div>
 
-      <section>
-        <nav className="flex flex-col p-0 font-bold  text-2xl w-60 ">
-          <button className="text-left py-2 px-2 hover:bg-orange-400  cursor-pointer  ">
-            <span>
-              <FontAwesomeIcon icon={faHome} className="mr-2" />
-            </span>
-            DashBoard
-          </button>
-          <Link
-            to="/accounts"
-            className=" text-left py-2 px-2 hover:bg-orange-400  cursor-pointer focus:bg-orange-500 "
-          >
-            <span>
-              <FontAwesomeIcon icon={faUser} className="mr-2" />
-            </span>
-            Accounts
-          </Link>
-          <button className=" text-left py-2 px-2  hover:bg-orange-400  cursor-pointer">
-            <span>
-              <FontAwesomeIcon icon={faExchangeAlt} className="mr-2" />
-            </span>
-            Transfer Funds
-          </button>
-          <button className=" text-left py-2 px-2  hover:bg-orange-400  cursor-pointer">
-            <span>
-              <FontAwesomeIcon icon={faListAlt} className="mr-2" />
-            </span>
-            Transactions
-          </button>
-          <button className=" text-left py-2 px-2 hover:bg-orange-400  cursor-pointer">
-            <span>
-              <FontAwesomeIcon icon={faMoneyBill1Wave} className="mr-2" />
-            </span>
-            Investments
-          </button>
-          <hr className="border-b-black"/>
-        
-        <button className=" text-left mt-6 py-2 px-2 hover:bg-orange-400  cursor-pointer font-normal text-xl">
-            <span>
-              <FontAwesomeIcon icon={faComments} className="mr-2" />
-            </span>
-            suggestions
-          </button>
-          <button className=" text-left py-2 px-2 hover:bg-orange-400  cursor-pointer font-normal text-xl">
-            <span>
-              <FontAwesomeIcon icon={faPiggyBank} className="mr-2" />
-            </span>
-            My Goals Tracker:
-          </button>
-
+      <section className="flex-1 py-2">
+        <nav className="space-y-1">
+          {menuItems.map((item, index) => (
+            item.path ? (
+              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-800'}`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
+                {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
+              </Link>
+            ) : (
+              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
+                {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
+              </button>
+            )
+          ))}
         </nav>
-        
+
+        <hr className={`my-4 ${isCollapsed ? 'mx-2' : 'mx-3'}`} style={{ borderColor: `${primaryColor}70` }} />
+
+        <nav className="space-y-1">
+          {secondaryItems.map((item, index) => (
+            item.path ? (
+              <Link key={index} to={item.path} className={`flex items-center py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : 'hover:bg-red-800'}`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
+                {!isCollapsed && <span className="font-normal text-sm">{item.label}</span>}
+              </Link>
+            ) : (
+              <button key={index} className={`flex items-center w-full py-2 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-base' : 'mr-2 text-sm'} />
+                {!isCollapsed && <span className="font-normal text-sm">{item.label}</span>}
+              </button>
+            )
+          ))}
+        </nav>
       </section>
 
-    </main>
+      <div className="mt-auto border-t" style={{ borderColor: `${primaryColor}70` }}>
+        {!isCollapsed ? (
+          <div className="p-3">
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+                <span className="font-semibold text-xs text-white">U</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-medium truncate text-sm">User Name</p>
+                <p className="text-xs truncate" style={{ color: '#fca5a5' }}>user@example.com</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="p-3 flex justify-center">
+            <div className="h-8 w-8 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+              <span className="font-semibold text-xs text-white">U</span>
+            </div>
+          </div>
+        )}
+        
+        <nav className="pb-3">
+          {footerItems.map((item, index) => (
+            item.path ? (
+              <Link key={index} to={item.path} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800 text-xs ${isActiveLink(item.path) ? 'bg-white text-red-800 shadow-md' : ''}`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-sm mx-auto' : 'mr-2 text-xs'} />
+                {!isCollapsed && <span>{item.label}</span>}
+              </Link>
+            ) : (
+              <button key={index} className={`flex items-center w-full py-1.5 ${isCollapsed ? 'px-2 justify-center' : 'px-3'} mx-1 rounded-md transition-all duration-200 hover:bg-red-800 text-xs`}>
+                <FontAwesomeIcon icon={item.icon} className={isCollapsed ? 'text-sm mx-auto' : 'mr-2 text-xs'} />
+                {!isCollapsed && <span>{item.label}</span>}
+              </button>
+            )
+          ))}
+        </nav>
+      </div>
+    </div>
   );
 };
 
